@@ -9,8 +9,10 @@ env.app = 'Residency'
 env.dest = "/var/www/%(app)s" % env
 env.use_ssh_config = True
 
+
 def reload_processes():
     sudo("kill -HUP `cat /tmp/%(app)s.pid`" % env)
+
 
 def sync():
     repo = git.Repo(".")
@@ -23,14 +25,17 @@ def sync():
         with cd(env.dest):
             run("compass compile")
 
-#            with prefix(". /home/ubuntu/environments/%(app)s/bin/activate" % env):
-#                run("%(dest)s/manage.py syncmedia" % env)
+# with prefix
+# (". /home/ubuntu/environments/%(app)s/bin/activate" % env):
+# run("%(dest)s/manage.py syncmedia" % env)
+
 
 def deploy():
     sync()
     link_files()
     reload_processes()
     add_commit_sha()
+
 
 def link_files():
     print(colors.yellow("Linking settings."))
@@ -48,6 +53,7 @@ def link_files():
         sudo("rm -f conf/supervisor/programs.ini" % env)
         sudo("ln -s %(label)s.ini conf/supervisor/programs.ini" % env)
 
+
 def reload_processes(reload_type="soft"):
     print(colors.yellow("Reloading processes."))
 
@@ -55,8 +61,9 @@ def reload_processes(reload_type="soft"):
     with cd(env.dest):
         sudo("kill -HUP `cat /tmp/gunicorn.%(app)s.%(label)s.pid`" % env)
 
+
 def add_commit_sha():
     repo = git.Repo(".")
     sha = repo.head.commit.hexsha
-    sed("{}/settings.py".format(env.dest), "^COMMIT_SHA = .*$", 'COMMIT_SHA = "{}"'.format(sha), backup="\"\"", use_sudo=True)
-
+    sed("{}/settings.py".format(env.dest), "^COMMIT_SHA = .*$",
+        'COMMIT_SHA = "{}"'.format(sha), backup="\"\"", use_sudo=True)

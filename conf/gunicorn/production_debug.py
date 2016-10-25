@@ -13,4 +13,3 @@ worker_class = "gevent"
 debug = True
 
 django_settings = "Residency.settings"
-

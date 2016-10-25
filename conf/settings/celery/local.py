@@ -6,4 +6,3 @@ CELERY_IMPORTS = ("app.tasks",)
 # CELERY_RESULT_BACKEND = "redis"
 
 CELERY_ROUTES = {}
-

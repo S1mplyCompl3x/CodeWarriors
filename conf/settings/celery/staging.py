@@ -7,4 +7,3 @@ CELERYD_TASK_TIME_LIMIT = 60  # seconds
 # CELERY_RESULT_BACKEND = "redis"
 
 CELERY_ROUTES = {}
-

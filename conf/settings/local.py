@@ -1,8 +1,16 @@
 import os
+import environ
+import dj_database_url
 
 BASE = os.path.abspath(os.path.dirname(__name__))
 
+env = environ.Env()
+
 DATABASES = {
+}
+DATABASES['default'] = dj_database_url.config(default='DATABASE_URL')
+
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Residency_local',
@@ -11,7 +19,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': ''
     }
-}
+}'''
 
 CACHES = {
     'default': {

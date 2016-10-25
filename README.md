@@ -1,5 +1,58 @@
 For information on how to use this project template, check out the [wiki](https://github.com/lionheart/django-template/wiki/Django-1.9).
 
+Let's Get Started
+=================
+
+## Python 3.5
+At this point you're probably just getting started. You may not have a couple of things that you'll need to have, but by the time you finish with this getting started guide, 
+you should be good. First we'll have to install python 3.5.2
+https://www.python.org/downloads/
+Here you'll find your download whether on a MAC or Windows machine
+
+## IDE
+Now you need an IDE and PyCharm is here to help.
+https://www.jetbrains.com/pycharm/
+You can either download the IDE for Professional Developers or Community. Using an fau.edu email will get you a free copy of the Professional and
+I definitely recommend that over the Community editions just because why not.
+
+## Text Editor
+You can also use any one of your favorite text ediors be it NotePad++, SublimeText, Brackets, Atom or any other one you can think of, it's mainly
+up to your personal preference.
+
+## GitBash
+GitBash is something else you will need if you don't have already. It is a Windows terminal with Bash commands and git integration. It's an awesome
+tool and python is mainly CLI based so it will be a necessity.
+
+## pip
+pip is a package management system which is used to install and manage software packages written in Python. The Python Package Index (PyPI). By default it comes installed with Python 3.4+
+
+```Usage:
+  pip  [options]
+
+Commands:
+  install       Install packages.
+  uninstall     Uninstall packages.
+  freeze        Output installed packages in requirements format.
+  list          List installed packages.
+  show          Show information about installed packages.
+  search        Search PyPI for packages.
+  zip           Zip individual packages.
+  unzip         Unzip individual packages.
+  bundle        Create pybundles.
+  help          Show help for commands.```
+
+most installations of code you do will be done using pip. There are times where an issues may arise and you must manually download and install these module packages.
+
+For windows this website provides alot of the binaries for different packages-
+http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+## virtualenv
+Virtual environments are an awesome and integral tool for python. They function keep the dependencies required by different projects in separate places, by creating virtual Python environments for them.  It solves the “Project X depends on version 1.x but, Project Y needs 4.x” dilemma, and keeps your global site-packages directory clean and manageable.
+
+Virtual Environments are best explained on The Hitchhiker's Guide to Python-
+http://docs.python-guide.org/en/latest/dev/virtualenvs/
+
+
 Installation
 ============
 
@@ -19,7 +72,8 @@ You've cloned the repo or started a new project with the startproject command. H
         (Residency) $ pip install -r requirements.txt
         # wait for a couple of minutes, hopefully nothing goes wrong!
 
-4. Link the local project settings to local_settings.py.
+4. Link the local project settings to local_settings.py. (This creates a reference to whatever settings module you are using whether local.py or
+production.py)
 
         (Residency) $ ln -s conf/settings/local.py local_settings.py
 

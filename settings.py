@@ -1,10 +1,15 @@
 import os
+import environ
+
+env = environ.Env()
 # from S3 import CallingFormat
 # from boto.s3.connection import OrdinaryCallingFormat
 
 BASE = os.path.abspath(os.path.dirname(__file__))
 
-DEBUG = True
+
+DEBUG = env.bool('DJANGO_DEBUG', True)
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = ()
@@ -36,7 +41,7 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (os.path.join(BASE, "static"),)
 STATIC_ROOT = os.path.join(BASE, "collected")
 
-SECRET_KEY = 'h0!*))!*j82w7x)3m=%a+jz#y=0po#je)0*ke5dq_8twh8#m-^'
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -137,7 +142,7 @@ LOGGING = {
             'filters': ['require_debug_false'],
         },
     },
-   'loggers': {
+    'loggers': {
         'sorl': {
             'handlers': ['syslog', 'console'],
             'propagate': False,
@@ -146,16 +151,16 @@ LOGGING = {
             'handlers': ['sentry'],
             'propagate': False
         },
-#        'django.db.backends': {
-#            'level': 'INFO',
-#            'propagate': False,
-#            'handlers': ['syslog', 'console', 'sentry'],
-#        },
-#        'django.request': {
-#            'level': 'INFO',
-#            'propagate': False,
-#            'handlers': ['syslog', 'console', 'sentry'],
-#        },
+        #        'django.db.backends': {
+        #            'level': 'INFO',
+        #            'propagate': False,
+        #            'handlers': ['syslog', 'console', 'sentry'],
+        #        },
+        #        'django.request': {
+        #            'level': 'INFO',
+        #            'propagate': False,
+        #            'handlers': ['syslog', 'console', 'sentry'],
+        #        },
     },
 }
 
@@ -214,7 +219,8 @@ INTERNAL_IPS = ['127.0.0.1', '0.0.0.0']
 # SENTRY_PUBLIC_KEY = ""
 # SENTRY_SECRET_KEY = ""
 # RAVEN_CONFIG = {
-#     'dsn': "https://{}:{}@app.getsentry.com/4195".format(SENTRY_PUBLIC_KEY, SENTRY_SECRET_KEY)
+#     'dsn': "https://{}:{}@app.getsentry.com/4195"
+#      .format(SENTRY_PUBLIC_KEY, SENTRY_SECRET_KEY)
 # }
 
 # django-statictastic querystring support
@@ -223,9 +229,11 @@ COMMIT_SHA = ""
 try:
     from local_settings import *
 except ImportError:
-    raise ImportError("""Please link the appropriate settings file from conf/settings to `local_settings.py` in the project root. E.g.
-
-    (Residency)$ ln -s conf/settings/local.py local_settings.py""")
+    raise ImportError("""Please link the appropriate settings 
+        file from conf/settings to 
+        `local_settings.py` in the project root. 
+        E.g.(Residency)$ ln -s conf/settings/local.py 
+        local_settings.py""")
 
 # Uncomment if using django-celery
 # try:
@@ -233,7 +241,8 @@ except ImportError:
 #     djcelery.setup_loader()
 #     import celeryconfig
 # except ImportError:
-#    raise ImportError("""Please link the appropriate settings file from conf/settings/celery to `celeryconfig.py` in the project root. E.g.
+#    raise ImportError("""Please link the appropriate 
+# settings file from conf/settings/celery to `celeryconfig.py` 
+# in the project root. E.g.
 #
-#    (Residency)$ ln -s conf/settings/celery/local.py celeryconfig.py""")
-
+#  (Residency)$ ln -s conf/settings/celery/local.py celeryconfig.py""")

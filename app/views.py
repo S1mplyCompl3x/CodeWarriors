@@ -6,7 +6,7 @@ from lionheart.decorators import render
 
 logger = logging.getLogger(__name__)
 
+
 @render
 def home(request):
     return {}
-

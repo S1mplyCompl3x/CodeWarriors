@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-DEBUG = False
+DEBUG = env.bool('DJANGO_DEBUG', True)
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ["..com"]
@@ -12,7 +12,7 @@ DATABASES = {
         'USER': 'Residency',
         'PASSWORD': 'Residency',
         'HOST': '127.0.0.1',
-        'PORT': '',
+        'PORT': '8080',
     }
 }
 

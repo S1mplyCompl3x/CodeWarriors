@@ -1,4 +1,5 @@
 #!/bin/bash
+import pep8
 
 CHANGED_PYTHON_FILES=`git diff --cached --name-only | grep py$`
 
