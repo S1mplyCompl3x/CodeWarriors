@@ -1,0 +1,82 @@
+proxy_cache_path /var/cache/nginx levels=2:2 keys_zone=maincache:5m max_size=1000m;
+
+# pagespeed on;
+#
+# pagespeed FileCachePath /var/ngx_pagespeed_cache;
+# pagespeed Domain http://Residency.com;
+# pagespeed Domain http://static.Residency.com;
+# pagespeed LoadFromFile http://static.Residency.com/static/ /var/www/Residency/collected/;
+
+# Change example.cdn.net to a CDN with root endpoint set to 
+# static.Residency.com
+# pagespeed MapRewriteDomain example.cdn.net static.Residency.com;
+
+upstream Residency {
+  server unix:/tmp/gunicorn.Residency.production.sock;
+}
+
+server {
+  listen 80;
+  server_name static.Residency.com;
+  root /var/www/Residency;
+
+  access_log /var/log/nginx/Residency-static.log combined;
+  error_log /var/log/nginx/Residency-static.err warn;
+
+  location /robots.txt { }
+
+  location /204 {
+    return 204;
+  }
+
+  location /static/admin/ {
+    alias /home/ubuntu/environments/Residency/lib/python2.7/site-packages/django/contrib/admin/static/admin/;
+    access_log off;
+
+    proxy_cache maincache;
+    proxy_cache_valid 200 1m;
+    proxy_cache_use_stale updating;
+  }
+
+  location /static/ {
+    expires max;
+    access_log off;
+    alias /var/www/Residency/static/;
+
+    proxy_cache maincache;
+    proxy_cache_valid 200 1m;
+    proxy_cache_use_stale updating;
+  }
+
+  location = /favicon.ico {
+    access_log off;
+    empty_gif;
+  }
+}
+
+server {
+  listen 80;
+
+#   listen 443 default_server ssl;
+#   ssl_certificate ssl/Residency.com.crt;
+#   ssl_certificate_key ssl/Residency-ca.key.nopass;
+
+  server_name Residency.com;
+  root /var/www/Residency;
+
+  access_log /var/log/nginx/Residency.log combined;
+  error_log /var/log/nginx/Residency.err warn;
+
+  location / {
+    proxy_pass http://Residency;
+    proxy_redirect off;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    proxy_connect_timeout 600;
+    proxy_send_timeout 600;
+    proxy_read_timeout 600;
+    send_timeout 600;
+  }
+}
+
