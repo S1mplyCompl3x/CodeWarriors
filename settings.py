@@ -229,17 +229,10 @@ COMMIT_SHA = ""
 try:
     from local_settings import *
 except ImportError:
-<<<<<<< HEAD
-    raise ImportError("""Please link the appropriate settings
-        file from conf/settings to
-        `local_settings.py` in the project root.
-        E.g.(Residency)$ ln -s conf/settings/local.py
-=======
     raise ImportError("""Please link the appropriate settings 
         file from conf/settings to 
         `local_settings.py` in the project root. 
         E.g.(Residency)$ ln -s conf/settings/local.py 
->>>>>>> 0063fef3951123d83943bc5694b79174b1008f7b
         local_settings.py""")
 
 # Uncomment if using django-celery
@@ -248,13 +241,10 @@ except ImportError:
 #     djcelery.setup_loader()
 #     import celeryconfig
 # except ImportError:
-<<<<<<< HEAD
-#    raise ImportError("""Please link the appropriate
+#   raise ImportError("""Please link the appropriate
 # settings file from conf/settings/celery to `celeryconfig.py`
-=======
 #    raise ImportError("""Please link the appropriate 
 # settings file from conf/settings/celery to `celeryconfig.py` 
->>>>>>> 0063fef3951123d83943bc5694b79174b1008f7b
 # in the project root. E.g.
 #
 #  (Residency)$ ln -s conf/settings/celery/local.py celeryconfig.py""")
