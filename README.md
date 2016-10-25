@@ -39,7 +39,8 @@ Commands:
   zip           Zip individual packages.
   unzip         Unzip individual packages.
   bundle        Create pybundles.
-  help          Show help for commands.```
+  help          Show help for commands.
+  ```
 
 most installations of code you do will be done using pip. There are times where an issues may arise and you must manually download and install these module packages.
 
