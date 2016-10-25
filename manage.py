@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
+import django
 
 import dotenv
 
@@ -15,6 +16,10 @@ if __name__ == "__main__":
 
     # dirspot = os.getcwd()
     # print(dirspot + 'hello')
+    django.setup()
+    from django.core.management.commands.runserver import Command as runserver
+    # set default port to 8080
+    runserver.default_port = "8080"
 
     execute_from_command_line(sys.argv)
 
