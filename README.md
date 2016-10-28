@@ -68,6 +68,15 @@ You've cloned the repo or started a new project with the startproject command. H
         $ virtualenv venv
         $ source venv/scripts/activate # if scripts does not exist, it is bin
 
+## Before Proceeding
+Please create a new file in your Project Direcory called
+`.env`
+Do this by using the bash command
+`touch .env`
+From here, open it up with any text editor, and copy over the content from `env.example`
+and fill in/update the necessary information, especially your settings module location
+or the next step may not work.
+
 3. Install the project requirements.
 
         (ProjectName) $ pip install -r requirements.txt
@@ -75,14 +84,6 @@ You've cloned the repo or started a new project with the startproject command. H
 
 If you get an error regarding 'lxml' refer to this link to get around the errors
 http://stackoverflow.com/questions/33785755/getting-could-not-find-function-xmlcheckversion-in-library-libxml2-is-libxml2
-
-## Before Proceeding
-Please create a new file in your Project Direcory called
-`.env`
-Do this by using the bash command
-`touch .env`
-From here, open it up with any text editor, and copy over the content from `env.example`
-and fill in what the necessary information.
 
 4. Link the local project settings to local_settings.py. (This creates a reference to whatever settings module you are using whether local.py or production.py)
 
