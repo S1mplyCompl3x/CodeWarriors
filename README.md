@@ -57,6 +57,15 @@ http://docs.python-guide.org/en/latest/dev/virtualenvs/
 Installation
 ============
 
+## !!Before Proceeding!!
+Please create a new file in your Project Direcory called
+`.env`
+Do this by using the bash command
+`touch .env`
+From here, open it up with any text editor, and copy over the content from `env.example`
+and fill in/update the necessary information, especially your settings module location
+or the next steps may not work.
+
 You've cloned the repo or started a new project with the startproject command. Here's how you actually get started developing. These steps assume you have pip installed. Please also ensure you are using GitBash to do all this stuff, it makes it a bit
 
 1. Install virtualenv.
@@ -67,15 +76,6 @@ You've cloned the repo or started a new project with the startproject command. H
 
         $ virtualenv venv
         $ source venv/scripts/activate # if scripts does not exist, it is bin
-
-## Before Proceeding
-Please create a new file in your Project Direcory called
-`.env`
-Do this by using the bash command
-`touch .env`
-From here, open it up with any text editor, and copy over the content from `env.example`
-and fill in/update the necessary information, especially your settings module location
-or the next step may not work.
 
 3. Install the project requirements.
 
