@@ -57,32 +57,42 @@ http://docs.python-guide.org/en/latest/dev/virtualenvs/
 Installation
 ============
 
-You've cloned the repo or started a new project with the startproject command. Here's how you actually get started developing. These steps assume you have pip installed.
+You've cloned the repo or started a new project with the startproject command. Here's how you actually get started developing. These steps assume you have pip installed. Please also ensure you are using GitBash to do all this stuff, it makes it a bit
 
 1. Install virtualenv.
 
-        pip install virtualenv
+        $ pip install virtualenv
 
 2. Then, start a virtualenv in the project directory.
 
         $ virtualenv venv
-        $ . venv/bin/activate
+        $ source venv/scripts/activate # if scripts does not exist, it is bin
 
 3. Install the project requirements.
 
-        (Residency) $ pip install -r requirements.txt
+        (ProjectName) $ pip install -r requirements.txt
         # wait for a couple of minutes, hopefully nothing goes wrong!
 
-4. Link the local project settings to local_settings.py. (This creates a reference to whatever settings module you are using whether local.py or
-production.py)
+If you get an error regarding 'lxml' refer to this link to get around the errors
+http://stackoverflow.com/questions/33785755/getting-could-not-find-function-xmlcheckversion-in-library-libxml2-is-libxml2
 
-        (Residency) $ ln -s conf/settings/local.py local_settings.py
+## Before Proceeding
+Please create a new file in your Project Direcory called
+`.env`
+Do this by using the bash command
+`touch .env`
+From here, open it up with any text editor, and copy over the content from `env.example`
+and fill in what the necessary information.
+
+4. Link the local project settings to local_settings.py. (This creates a reference to whatever settings module you are using whether local.py or production.py)
+
+        (ProjectName) $ ln -s conf/settings/local.py local_settings.py
 
 5. Create your local database. Make sure you run the [steps below](#postgresql-installation) if you haven't already installed PostgreSQL.
 
         $ psql
-        postgres# CREATE ROLE Residency_local WITH LOGIN ENCRYPTED PASSWORD 'Residency_local';
-        postgres# CREATE DATABASE Residency_local WITH OWNER Residency_local;
+        postgres# CREATE ROLE ProjectName_local WITH LOGIN ENCRYPTED PASSWORD 'ProjectName_local';
+        postgres# CREATE DATABASE ProjectName_local WITH OWNER ProjectName_local;
 
     **Note**: If you get a `psql: FATAL:  role "YOUR_USERNAME" does not exist` error, just do the following to save yourself from having to write `--user postgres` every time you want to run `psql`. If, say, your username is `dan` on your development machine, you'd run the following:
 
@@ -93,8 +103,8 @@ production.py)
 
 6. Make manage.py executable and run migrations.
 
-        (Residency) $ chmod +x manage.py
-        (Residency) $ ./manage.py migrate
+        (ProjectName) $ chmod +x manage.py
+        (ProjectName) $ ./manage.py migrate
 
 7. Set up the Git hooks.
 
@@ -102,19 +112,19 @@ production.py)
 
 8. Start the local development server.
 
-        (Residency) $ ./manage.py runserver
+        (ProjectName) $ ./manage.py runserver
         Performing system checks...
 
-        September 17, 2014
-        Django version 1.9.6, using settings 'settings'
-        Starting development server at http://127.0.0.1:8000/
-        Quit the server with CONTROL-C.
+        October 27th, 2016
+        Django version 1.9.9, using settings 'settings'
+        Starting development server at http://127.0.0.1:8080/
+        Quit the server with CONTROL-BREAK.
 
-Map "local.Residency.com" to 127.0.0.0 using DNS. If you haven't yet registered a domain, add the following line to your `/etc/hosts` file.
+Map "local.Residency.com" to 127.0.0.1 using DNS. If you haven't yet registered a domain, add the following line to your `/etc/hosts` file.
 
-    127.0.0.1 local.Residency.com
+    127.0.0.1 local.ProjectName.com
 
-After you've done that, open your browser and navigate to "[local.Residency.com](http://local.Residency.com)". Your project is now running!
+After you've done that, open your browser and navigate to "[local.ProjectName.com](http://local.ProjectName.com)". Your project is now running!
 
 PostgreSQL Installation
 -----------------------
