@@ -77,12 +77,14 @@ You've cloned the repo or started a new project with the startproject command. H
     or the next steps may not work.
 
 3. Install the project requirements.
+    
+    There will be errors if you do not first follow the guide written here to install the lxml module from a source file. In order to have a smooth installation process of all the requirements you will have to refer below to install the lxml package-
+    http://stackoverflow.com/questions/33785755/getting-could-not-find-function-xmlcheckversion-in-library-libxml2-is-libxml2
 
+    Once that is done, everything else should go smoothly.
+    
         (ProjectName) $ pip install -r requirements.txt
         # wait for a couple of minutes, hopefully nothing goes wrong!
-
-    If you get an error regarding 'lxml' refer to this link to get around the errors
-    http://stackoverflow.com/questions/33785755/getting-could-not-find-function-xmlcheckversion-in-library-libxml2-is-libxml2
 
 4. Link the local project settings to local_settings.py. (This creates a reference to whatever settings module you are using whether local.py or production.py)
 
