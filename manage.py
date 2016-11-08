@@ -9,7 +9,7 @@ if __name__ == "__main__":
     dotenv.read_dotenv()
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Residency.settings")
-    # test if environment variable is properly set
+    # test if environment variable is properly set for debugging
     # print(os.environ.get('DJANGO_SETTINGS_MODULE'))
 
     from django.core.management import execute_from_command_line
@@ -18,8 +18,8 @@ if __name__ == "__main__":
     # print(dirspot + 'hello')
     django.setup()
     from django.core.management.commands.runserver import Command as runserver
-    # set default port to 8080
-    runserver.default_port = "8080"
+    # set default django runserver port to port speciifed in .env file or 8080
+    runserver.default_port = os.environ.get('DEFAULT_PORT', '8080')
 
     execute_from_command_line(sys.argv)
 

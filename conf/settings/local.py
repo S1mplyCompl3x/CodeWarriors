@@ -1,25 +1,24 @@
 import os
 import environ
-import dj_database_url
 
 BASE = os.path.abspath(os.path.dirname(__name__))
 
 env = environ.Env()
 
-DATABASES = {
-}
-DATABASES['default'] = dj_database_url.config(default='DATABASE_URL')
+# No longer using database URL
+# DATABASES['default'] = dj_database_url.config(default='DATABASE_URL')
+# print(DATABASES)
 
-'''DATABASES = {
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Residency_local',
-        'USER': 'Residency_local',
-        'PASSWORD': 'Residency_local',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_NAME', ''),
+        'USER': os.environ.get('POSTGRES_USER', ''),
+        'PASSWORD': os.environ.get('POSTGRES_PASS', ''),
         'HOST': '127.0.0.1',
         'PORT': ''
     }
-}'''
+}
 
 CACHES = {
     'default': {
