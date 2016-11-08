@@ -13,6 +13,7 @@ boto==2.40.0
 gitpython==0.3.2.RC1
 raven==5.10.0
 django-cachalot==1.2.1
+django-bootstrap3
 
 # Need to install with CFLAGS="-I/usr/pkg/include" prepended in order for system libraries to be found.
 pillow==3.2.0
