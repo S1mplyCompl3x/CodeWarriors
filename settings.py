@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'app',
     'debug_toolbar',
     'statictastic',
+    'bootstrap3',
     # 'livereload',
     # 'django_object_actions',
     # 'sorl.thumbnail',
